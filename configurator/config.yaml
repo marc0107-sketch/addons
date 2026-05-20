@@ -38,3 +38,18 @@ schema:
     - str
   ssh_keys:
     - str
+
+
+    sensor:
+  - platform: rest
+    name: strompreis_raw
+    resource: "https://api.transparency.example/prices/today"  # ersetzen
+    headers:
+      Authorization: "Bearer bb4a0410-5f4b-4874-8bdd-0fbc62707d25"                     # ersetzen
+    method: GET
+    json_attributes_path: "$.prices"                             # anpassen falls nötig
+    json_attributes:
+      - prices
+    value_template: "{{ now().isoformat() }}"                   # Dummy; Werte in attributes
+    scan_interval: 600
+
